@@ -3,7 +3,7 @@ import { TableHead } from './TableHead';
 import {ComponentMeta,ComponentStory} from '@storybook/react';
 
 export default {
-    title:'Spacex/Thead',
+    title:'Spacex/Table/Thead',
     component:TableHead,
     argsType:{
         backgroundColor:{contorl:'color'}
@@ -17,12 +17,18 @@ export const SmallThead = Template.bind({});
 SmallThead.args={
     backgroundColor:'white',
     columns:[
-        {header:'No.',width:100},
-        {header:'Launched(UTC)',width:100},
-        {header:'Location',width:100},
-        {header:'Mission',width:100},
-        {header:'Orbit',width:100},
-        {header:'Launch Status',width:100},
-        {header:'Rocket',width:100},
+        {
+            key: 'name',
+            header: 'Name',
+            width: 150
+          },
+          {
+            key: 'age',
+            header: 'Age in years',
+          },
+          {
+            key: 'color',
+            header: 'Color'
+          }
     ]
 }

@@ -1,6 +1,8 @@
 import React from 'react';
+import { DataProp } from '../tbody/Tbody';
 
-interface ColummnDefinationType{
+export interface ColummnDefinationType{
+    key: keyof DataProp;
     header:string;
     width?:number;
 }
@@ -16,7 +18,6 @@ export const TableHead = ({
         const style = {
           width: column.width ?? 100, 
           borderBottom: '2px solid black',
-          borderRight: '2px solid black'
         };
     
         return (

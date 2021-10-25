@@ -1,3 +1,8 @@
+import React from 'react';
+import {addDecorator} from '@storybook/react';
+import Root from '../src/components/root/Root';
+import { Provider } from 'react-redux';
+import {store} from '../src/state/store'
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -7,3 +12,5 @@ export const parameters = {
     },
   },
 }
+
+addDecorator(story=><Root>{story()}</Root>)
