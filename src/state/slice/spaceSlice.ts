@@ -1,18 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import moment from 'moment';
 import { DataProp } from '../../components/table/tbody/Tbody';
-export interface Spacex {
-    flight_number: number|undefined;
-    launch_date_utc: Date;
-    mission_name: string;
-    rocket: any;
-    upcoming:boolean;
-    launch_success:boolean;
-    launch_site?:{
-        site_name:string,
-        // [key:string]:unknown|{[key:string]:unknown},
-    }
-}
+import { TableHeadProps, Spacex } from '../../components/spacex/table/typeInterface/TableInterface';
+import { getItems } from '../actions/spacexActions';
 export interface ShowSpacex {
     item: Spacex[];
     isLoading: boolean,
@@ -22,7 +12,8 @@ export interface ShowSpacex {
     statusd:string,
     start:string,
     end:string,
-    catData:DataProp[]
+    catData:DataProp[],
+    tableHead:TableHeadProps
 }
 const data: DataProp[] = [
     {
@@ -51,6 +42,42 @@ const data: DataProp[] = [
       age: 1
     }
   ]
+const tableHead:TableHeadProps = {
+    backgroundColor:'white',
+    columns:[
+        {
+            key: 'flight_number',
+            header: 'No.',
+         
+          },
+          {
+            key: 'launch_date_utc',
+            header: 'Launched(UTC)',
+            width: 150
+          },
+          {
+            key: 'launch_site',
+            header: 'Location',
+            width:100
+          },
+          {
+            key: 'mission_name',
+            header: 'Mission'
+          },
+          {
+            key: 'orbit',
+            header: 'Orbit'
+          },
+          {
+            key: 'launch_success',
+            header: 'Launch Status'
+          },
+          {
+            key: 'rocket_name',
+            header: 'Rocket'
+          }
+    ]
+}
 const initialState: ShowSpacex = {
     item: [],
     singleItem: {},
@@ -60,7 +87,8 @@ const initialState: ShowSpacex = {
     statusd:'all',
     start:'',
     end:'',
-    catData:data
+    catData:data,
+    tableHead:tableHead
 };
 
 
@@ -87,7 +115,27 @@ const spaceSlice = createSlice({
         }
     },
     
-
+    extraReducers: 
+    function (builder) {
+        builder.addCase(getItems.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getItems.fulfilled, (state, action: PayloadAction<Spacex[]|any>) => {
+            state.isLoading= false;
+            state.item = action.payload
+            state.errorMessage = '';
+        });
+        builder.addCase(getItems.rejected, (state, action) => {
+            state.isLoading = false;
+            state.item = [];
+            let msg = action.error.message;
+            if(action.error.message === 'Rejected'){
+                msg = 'Not Found Launches'
+            }
+            state.errorMessage = msg || "";
+        });
+      
+    }
 });
 
 export const {getModalFalse,changeStatus,onSelect} = spaceSlice.actions;
