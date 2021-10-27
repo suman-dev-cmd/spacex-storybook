@@ -48,17 +48,17 @@ const tableHead:TableHeadProps = {
         {
             key: 'flight_number',
             header: 'No.',
-         
+            width: 35
           },
           {
             key: 'launch_date_utc',
             header: 'Launched(UTC)',
-            width: 150
+            width: 170
           },
           {
             key: 'launch_site',
             header: 'Location',
-            width:100
+            width:120
           },
           {
             key: 'mission_name',
@@ -70,7 +70,8 @@ const tableHead:TableHeadProps = {
           },
           {
             key: 'launch_success',
-            header: 'Launch Status'
+            header: 'Launch Status',
+            width:150
           },
           {
             key: 'rocket_name',

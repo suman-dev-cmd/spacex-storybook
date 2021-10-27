@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../../hooks/hook";
 import moment from "moment";
 import { TableDataProps } from "../typeInterface/TableInterface";
 import { getItems } from "../../../../state/actions/spacexActions";
+
 const TableRow:React.FC = () => {
   const dispatch = useAppDispatch();
   const { tableHead, item, isLoading, errorMessage } = useAppSelector(
@@ -41,16 +42,13 @@ const TableRow:React.FC = () => {
   useEffect(() => {
     dispatch(getItems());
   }, []);
-  const style = {
-    border: "1px solid black",
-    textAlign: "center" as const,
-  };
+ 
   const rows = tableData.map((row, index) => {
     return (
       <tr key={`row-${index}`}>
         {tableHead.columns.map((column, index2) => {
           return (
-            <td key={`cell-${index2}`} style={style}>
+            <td key={`cell-${index2}`}>
               {column.key == "launch_success"
                 ? getStatus(row.upcoming, row.launch_success)
                 : row[column.key]}

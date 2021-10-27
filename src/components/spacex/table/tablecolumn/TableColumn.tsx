@@ -1,5 +1,7 @@
 import React from "react";
 import { useAppSelector } from "../../../../hooks/hook";
+import styled from "styled-components";
+
 export const TableColumn = () => {
   const { backgroundColor, columns } = useAppSelector(
     (state) => state.spacex.tableHead
@@ -7,7 +9,6 @@ export const TableColumn = () => {
   const headers = columns.map((column, index) => {
     const style = {
       width: column.width ?? 100,
-      borderBottom: "2px solid black",
     };
     return (
       <th key={`headCell-${index}`} style={style}>
@@ -16,8 +17,8 @@ export const TableColumn = () => {
     );
   });
   return (
-    <thead style={{ backgroundColor }}>
-      <tr>{headers}</tr>
-    </thead>
+      <thead>
+        <tr>{headers}</tr>
+      </thead>
   );
 };
