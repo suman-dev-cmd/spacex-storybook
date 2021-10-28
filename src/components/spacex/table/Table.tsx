@@ -1,15 +1,13 @@
 import React from "react";
 import { TableColumn } from "./tablecolumn/TableColumn";
 import TableRow from "./tablerow/TableRow";
-import { Container,TableRowContainer } from "./TableStyles";
+import { TableContainer } from "./TableStyles";
 const Table:React.FC = () => {
   return (
-    <Container bid={2}>
-      <table>
+    <TableContainer>
         <TableColumn />
         <TableRow />
-      </table>
-    </Container>
+    </TableContainer>
   );
 };
 
