@@ -2,9 +2,9 @@ import React from "react";
 import { TableColumn } from "./tablecolumn/TableColumn";
 import TableRow from "./tablerow/TableRow";
 import { TableContainer } from "./TableStyles";
-const Table:React.FC = () => {
+const Table = () => {
   return (
-    <TableContainer>
+    <TableContainer data-test='component-app'>
         <TableColumn />
         <TableRow />
     </TableContainer>

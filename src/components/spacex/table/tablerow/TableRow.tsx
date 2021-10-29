@@ -22,8 +22,8 @@ const SpanContainer = styled.span<Props>`
   display: flex; 
   justify-content: center;
   text-transform: uppercase;
-  color: ${(props)=>props.status === 'upcoming'? '#ab2e2e':props.status === 'success'?'#e7e5e0':'#f3c55c'};
-  background-color:${(props)=>props.status === 'upcoming'? 'rgb(237 204 40)':props.status === 'success'?'rgb(9 185 104)':'#ef2c2c'};
+  color: ${(props)=>props.status === 'upcoming'? '#504701':props.status === 'success'?'#044609':'#d91628'};
+  background-color:${(props)=>props.status === 'upcoming'? 'rgb(215 204 153)':props.status === 'success'?'rgb(133 209 174)':'#eb9494'};
 `;
 const TableRow: React.FC = () => {
   const dispatch = useAppDispatch();
